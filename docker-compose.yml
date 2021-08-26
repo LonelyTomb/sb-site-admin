@@ -1,0 +1,16 @@
+version: "3"
+services:
+  web:
+    build: .
+    environment:
+      - NUXT_HOST=${NUXT_HOST}
+      - NODE_ENV=${NODE_ENV}
+      - API_URL=${API_URL}
+      - BASE_URL=${BASE_URL}
+      - NUXT_MODE=${NUXT_MODE}
+      - APP_AWS_ID=${APP_AWS_ID}
+      - APP_AWS_SECRET_ACCESS_KEY=${APP_AWS_SECRET_ACCESS_KEY}
+    ports:
+      - "3000:80"
+    command: nginx -g 'daemon off;'
+

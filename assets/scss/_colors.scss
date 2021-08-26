@@ -1,0 +1,47 @@
+$primary: #F58653;
+$secondary: #0D8155;
+$gray: #707070;
+$dark: #020424;
+$light: #c9c9c9;
+$white: #ffffff;
+$black: #000000;
+$royal: #2b094d;
+$danger: #D81130;
+$success: #65c299;
+
+//Admin Colors
+$accent: #006a38;
+$good: #16c98d;
+$bad: #fa5e5b;
+$okay: #feef6d;
+$poor: #ffc83f;
+$b: #241c15;
+$admin_black: #241c15;
+$light_gray: #e0e0e0;
+
+//landing-page color
+$cta-primary: #004f47;
+$cta-accent: #007b75;
+
+:root {
+  --primary: #{$primary};
+  --secondary: #{$secondary};
+  --dark: #{$dark};
+  --light: #{$light};
+  --gray: #{$gray};
+  --white: #{$white};
+  --black: #{$black};
+  --danger: #{$danger};
+  --success: #{$success};
+  --purple: #{$royal};
+
+  --accent: #{$accent};
+  --good: #{$good};
+  --bad: #{$bad};
+  --okay: #{$okay};
+  --poor: #{$poor};
+  --admin-black: #{$admin_black};
+  --light-gray: #{$light_gray};
+  --cta-primary: #{$cta-primary};
+  --cta-accent: #{$cta-accent};
+}

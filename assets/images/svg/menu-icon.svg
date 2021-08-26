@@ -1,0 +1,28 @@
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="40"
+    height="18"
+    viewBox="0 0 40 18"
+  >
+    <g id="Menu_Button" data-name="Menu Button" transform="translate(0 1.5)">
+      <g id="Menu" transform="translate(-1655.935 -103)">
+        <path
+          id="Path_1"
+          data-name="Path 1"
+          d="M1655.935,103h40"
+          fill="none"
+          stroke="#282829"
+          stroke-width="3"
+        />
+        <path
+          id="Path_2"
+          data-name="Path 2"
+          d="M1655.935,103h40"
+          transform="translate(0 15)"
+          fill="none"
+          stroke="#282829"
+          stroke-width="3"
+        />
+      </g>
+    </g>
+  </svg>

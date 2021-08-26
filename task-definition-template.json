@@ -1,0 +1,51 @@
+{
+  "containerDefinitions": [
+    {
+      "portMappings": [
+        {
+          "hostPort": 3000,
+          "protocol": "tcp",
+          "containerPort": 3000
+        }
+      ],
+      "environment": [
+        {
+          "name": "API_URL",
+          "value": "${API_URL}"
+        },
+        {
+          "name": "BASE_URL",
+          "value": "${BASE_URL}"
+        },
+        {
+          "name": "APP_AWS_ID",
+          "value": "${APP_AWS_ID}"
+        },
+        {
+          "name": "APP_AWS_SECRET_ACCESS_KEY",
+          "value": "${APP_AWS_SECRET_ACCESS_KEY}"
+        },
+        {
+          "name": "APP_AWS_BUCKET",
+          "value": "${APP_AWS_BUCKET}"
+        },
+        {
+          "name": "NUXT_MODE",
+          "value": "${NUXT_MODE}"
+        },
+        {
+          "name": "NUXT_HOST",
+          "value": "${NUXT_HOST}"
+        }
+      ],
+      "image": "${IMAGE_NAME}",
+      "name": "lanshares-app"
+    }
+  ],
+  "memory": "512",
+  "family": "the-hills-app-dev",
+  "requiresCompatibilities": [
+    "EC2"
+  ],
+  "cpu": "512"
+}

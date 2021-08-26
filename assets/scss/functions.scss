@@ -1,0 +1,7 @@
+@function toRem($px){
+  @return #{$px / 16}rem
+}
+
+@function toRes($px) {
+  @return #{$px * 0.75 / 16}rem
+}

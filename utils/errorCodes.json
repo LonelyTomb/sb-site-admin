@@ -1,0 +1,20 @@
+{
+  "0": {
+    "text": "Unable to process request!"
+  },
+  "400": {
+    "text": "Unable to process request!"
+  },
+  "401": {
+    "text": "You are not logged in!"
+  },
+  "403": {
+    "text": "You don't have access to this feature!"
+  },
+  "404": {
+    "text": "Oops! an error occured!"
+  },
+  "500": {
+    "text": "Oops! an error occured!"
+  }
+}

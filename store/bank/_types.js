@@ -1,0 +1,3 @@
+const SET_ACCOUNT = 'SET_ACCOUNT'
+const SET_BANKS = 'SET_BANKS'
+export { SET_ACCOUNT, SET_BANKS }
