@@ -79,7 +79,9 @@
       </template>
       <template #cell(downline)="data">
         <div class="text-center p-1 rounded-lg text-capitalize">
-          {{ data.item.realtor_tree.downline_count }}
+          {{
+            data.item.realtor_tree ? data.item.realtor_tree.downline_count : 0
+          }}
         </div>
       </template>
       <template #cell(state_of_origin)="data">

@@ -69,7 +69,12 @@
       </template>
       <template #cell(fullname)="data">
         <div class="text-center p-1 rounded-lg">
-          {{ data.item.customer.firstname }} {{ data.item.customer.lastname }}
+          {{
+            data.item.customer
+              ? data.item.customer.firstname
+              : 'COMPANY COMMISSION'
+          }}
+          {{ data.item.customer ? data.item.customer.lastname : '' }}
         </div>
       </template>
       <template #cell(total_amount)="data">

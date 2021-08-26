@@ -55,26 +55,26 @@ export default {
               name: 'admin-investments',
               image: require('@/assets/images/svg/realtor-icon.svg'),
             },
-            {
-              title: 'Pending Allocation',
-              name: 'admin-pending_allocation',
-              image: require('@/assets/images/svg/pending-allocation-icon.svg'),
-            },
+            // {
+            //   title: 'Pending Allocation',
+            //   name: 'admin-pending_allocation',
+            //   image: require('@/assets/images/svg/pending-allocation-icon.svg'),
+            // },
           ],
         },
         {
           title: 'Finances',
           links: [
-            {
-              title: 'Sales',
-              name: 'admin-sales',
-              image: require('@/assets/images/svg/sales-icon.svg'),
-            },
-            {
-              title: 'Promotions',
-              name: 'admin-promotions',
-              image: require('@/assets/images/svg/promotions-icon.svg'),
-            },
+            // {
+            //   title: 'Sales',
+            //   name: 'admin-sales',
+            //   image: require('@/assets/images/svg/sales-icon.svg'),
+            // },
+            // {
+            //   title: 'Promotions',
+            //   name: 'admin-promotions',
+            //   image: require('@/assets/images/svg/promotions-icon.svg'),
+            // },
             {
               title: 'Payments',
               name: 'admin-payments',
@@ -90,21 +90,21 @@ export default {
         {
           title: 'Setup',
           links: [
-            {
-              title: 'Change Requests',
-              name: 'admin-change_requests',
-              image: require('@/assets/images/svg/changed-request-icon.svg'),
-            },
+            // {
+            //   title: 'Change Requests',
+            //   name: 'admin-change_requests',
+            //   image: require('@/assets/images/svg/changed-request-icon.svg'),
+            // },
             {
               title: 'Settings',
               name: 'admin-settings',
               image: require('@/assets/images/svg/settings-icon.svg'),
             },
-            {
-              title: 'Users',
-              name: 'admin-user',
-              image: require('@/assets/images/svg/users-icon.svg'),
-            },
+            // {
+            //   title: 'Users',
+            //   name: 'admin-users',
+            //   image: require('@/assets/images/svg/users-icon.svg'),
+            // },
           ],
         },
       ],
