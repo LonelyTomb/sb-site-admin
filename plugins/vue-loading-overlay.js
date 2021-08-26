@@ -6,6 +6,6 @@ import 'vue-loading-overlay/dist/vue-loading.css'
 // Init plugin
 Vue.use(Loading, {
   loader: 'bars',
-  color: '#090D7C',
+  color: '#F58653',
   opacity: 0.95,
 })
