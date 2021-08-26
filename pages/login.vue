@@ -1,18 +1,13 @@
 <template>
   <b-container class="auth-pages px-0" fluid>
     <b-row class="page-wrapper" no-gutters>
-      <b-col cols="12" lg="4" class="pattern px-0">
-        <img src="~png/login-image.png" alt="" />
-      </b-col>
       <b-col
         cols="12"
-        lg="8"
+        lg="12"
         class="d-flex justify-content-center align-items-center"
       >
         <form class="form-wrapper px-4" @submit.prevent="submit">
-          <div class="logo-brand mb-lg-5 mb-4">
-            <b-img src="~svg/logo.svg" alt="" rounded="circle" />
-          </div>
+          <LogoBar />
           <AuthTitle title="Login to continue" />
 
           <BaseInout
@@ -82,12 +77,14 @@ import { email, minLength, required } from 'vuelidate/lib/validators'
 import BaseInout from '../components/BaseInout'
 import BaseButton from '../components/BaseButton'
 import AuthTitle from '../components/AuthTitle'
+import LogoBar from '../components/LogoBar'
 
 export default {
   components: {
     BaseInout,
     BaseButton,
     AuthTitle,
+    LogoBar,
   },
   data() {
     return {
@@ -154,8 +151,12 @@ export default {
     }
   }
 
+  .page-wrapper {
+    height: 100vh;
+  }
+
   .form-wrapper {
-    width: 55%;
+    width: 30%;
   }
 
   .logo-brand img {

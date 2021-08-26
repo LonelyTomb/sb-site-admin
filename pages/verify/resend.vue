@@ -1,18 +1,13 @@
 <template>
   <b-container class="auth-pages px-0" fluid>
     <b-row class="page-wrapper" no-gutters>
-      <b-col cols="12" lg="4" class="pattern px-0">
-        <img src="~png/forgot-password-img.png" alt="" />
-      </b-col>
       <b-col
         cols="12"
-        lg="8"
+        lg="12"
         class="d-flex justify-content-center align-items-center"
       >
         <form class="form-wrapper px-4" @submit.prevent="submit">
-          <div class="logo-brand mb-5">
-            <b-img src="~svg/logo.svg" alt="" rounded="circle" />
-          </div>
+          <LogoBar />
           <AuthTitle title="Verify Email" />
           <h5 class="mb-4">
             Enter your email address to resend the email verification link
@@ -58,6 +53,7 @@ import { mapActions } from 'vuex'
 import BaseInout from '../../components/BaseInout'
 import BaseButton from '../../components/BaseButton'
 import AuthTitle from '../../components/AuthTitle'
+import LogoBar from '../../components/LogoBar'
 
 export default {
   name: 'ResendEmail',
@@ -65,6 +61,7 @@ export default {
     BaseInout,
     BaseButton,
     AuthTitle,
+    LogoBar,
   },
   data() {
     return {
@@ -116,8 +113,12 @@ export default {
     }
   }
 
+  .page-wrapper {
+    height: 100vh;
+  }
+
   .form-wrapper {
-    width: 55%;
+    width: 30%;
   }
 
   .logo-brand img {

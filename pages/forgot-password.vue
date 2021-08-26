@@ -1,12 +1,9 @@
 <template>
   <b-container class="auth-pages px-0" fluid>
     <b-row class="page-wrapper" no-gutters>
-      <b-col cols="12" lg="4" class="pattern px-0">
-        <img src="~png/forgot-password-img.png" alt="" />
-      </b-col>
       <b-col
         cols="12"
-        lg="8"
+        lg="12"
         class="d-flex justify-content-center align-items-center"
       >
         <form v-if="!resend" class="form-wrapper px-4" @submit.prevent="submit">
@@ -127,8 +124,12 @@ export default {
     }
   }
 
+  .page-wrapper {
+    height: 100vh;
+  }
+
   .form-wrapper {
-    width: 55%;
+    width: 30%;
   }
 
   .logo-brand img {

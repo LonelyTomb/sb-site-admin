@@ -1,26 +1,19 @@
 <template>
   <b-container class="auth-pages px-0" fluid>
     <b-row class="page-wrapper" no-gutters>
-      <b-col cols="12" lg="4" class="pattern px-0">
-        <img src="~png/forgot-password-img.png" alt="" />
-      </b-col>
       <b-col
         cols="12"
-        lg="8"
+        lg="12"
         class="d-flex justify-content-center align-items-center"
       >
         <div v-if="verified" class="form-wrapper px-4">
-          <div class="logo-brand mb-5">
-            <b-img src="~svg/logo.svg" alt="" rounded="circle" />
-          </div>
+          <LogoBar />
           <AuthTitle title="Email Verified" />
           <h5 class="mb-5">Your email has been successfully verified</h5>
           <p>Redirecting to login page</p>
         </div>
         <div v-if="failToVerify" class="form-wrapper px-4">
-          <div class="logo-brand mb-5">
-            <b-img src="~svg/logo.svg" alt="" rounded="circle" />
-          </div>
+          <LogoBar />
           <AuthTitle title="Verify Email" />
           <h5 class="mb-5">Unable to verify email address.</h5>
           <div class="mt-5">
@@ -38,11 +31,13 @@
 import { mapActions, mapMutations } from 'vuex'
 import BaseButton from '../../components/BaseButton'
 import AuthTitle from '../../components/AuthTitle'
+import LogoBar from '../../components/LogoBar'
 
 export default {
   components: {
     BaseButton,
     AuthTitle,
+    LogoBar,
   },
   data() {
     return {
@@ -106,8 +101,12 @@ export default {
     }
   }
 
+  .page-wrapper {
+    height: 100vh;
+  }
+
   .form-wrapper {
-    width: 55%;
+    width: 30%;
   }
 
   .logo-brand img {
