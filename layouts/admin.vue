@@ -46,6 +46,11 @@ export default {
               image: require('@/assets/images/svg/client-icon.svg'),
             },
             {
+              title: 'Realtor',
+              name: 'customer-wallet',
+              image: require('@/assets/images/svg/realtor-icon.svg'),
+            },
+            {
               title: 'Locations',
               name: 'admin-locations',
               image: require('@/assets/images/svg/location-icon.svg'),
