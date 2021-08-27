@@ -4,7 +4,7 @@
       <b-img src="@/assets/images/svg/logo.svg" class="nav-logo" />
       <div class="nav-links justify-content-between">
         <NuxtLink to="#about">About us</NuxtLink>
-        <NuxtLink to="#faq">How it works</NuxtLink>
+        <NuxtLink to="#faq">How It works</NuxtLink>
         <NuxtLink to="#contact">Contact Us</NuxtLink>
         <NuxtLink to="/login">Login</NuxtLink>
       </div>
