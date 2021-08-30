@@ -47,7 +47,7 @@ export default {
             },
             {
               title: 'Realtor',
-              name: 'customer-wallet',
+              name: 'admin-realtors',
               image: require('@/assets/images/svg/realtor-icon.svg'),
             },
             {
