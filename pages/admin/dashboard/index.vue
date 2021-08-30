@@ -155,7 +155,7 @@ export default {
   computed: {
     ...mapGetters({
       customerCount: 'customer/count',
-      realtorCount: 'customer/realtorCount',
+      realtorCount: 'realtor/count',
       productCommissions: 'transactions/productCommissions',
     }),
     totalCommission() {
@@ -206,7 +206,7 @@ export default {
   methods: {
     ...mapActions({
       getCustomerCount: 'customer/count',
-      getRealtorCount: 'customer/realtorCount',
+      getRealtorCount: 'realtor/count',
       totalCommissions: 'customer/totalCommissions',
       getProductCommissions: 'transactions/productCommissions',
     }),
