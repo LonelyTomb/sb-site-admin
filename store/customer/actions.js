@@ -1,4 +1,9 @@
-import { SET_COUNT, SET_CUSTOMERS, SET_CUSTOMER } from './_types'
+import {
+  SET_CUSTOMER_COUNT,
+  SET_REALTOR_COUNT,
+  SET_CUSTOMERS,
+  SET_CUSTOMER,
+} from './_types'
 
 const actions = {
   async signUp({ commit }, payload) {
@@ -30,7 +35,11 @@ const actions = {
   },
   async count({ commit }) {
     const response = await this.$axios.$get('/api/customer/count')
-    commit(SET_COUNT, response.payload.count)
+    commit(SET_CUSTOMER_COUNT, response.payload.count)
+  },
+  async realtorCount({ commit }, params = { is_realtor: true }) {
+    const response = await this.$axios.$get('/api/customer/count', { params })
+    commit(SET_REALTOR_COUNT, response.payload.count)
   },
 }
 export default actions

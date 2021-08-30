@@ -155,6 +155,7 @@ export default {
   computed: {
     ...mapGetters({
       customerCount: 'customer/count',
+      realtorCount: 'customer/realtorCount',
       productCommissions: 'transactions/productCommissions',
     }),
     totalCommission() {
@@ -175,6 +176,13 @@ export default {
           icon: require('@/assets/images/svg/Group 2.svg'),
         },
         {
+          title: 'Total Realtors',
+          route: 'admin-realtors',
+          numeric: this.realtorCount,
+          percentage: 0,
+          icon: require('@/assets/images/svg/Group 2.svg'),
+        },
+        {
           title: 'Total Commissions',
           route: 'admin-commissions',
           numeric: `N${this.$formatAsMoney(
@@ -190,6 +198,7 @@ export default {
     try {
       await this.getCustomerCount()
       await this.getProductCommissions()
+      await this.getRealtorCount()
     } catch (e) {
       this.$Toast.fire({ icon: 'error', title: this.$formatError(e) })
     }
@@ -197,6 +206,7 @@ export default {
   methods: {
     ...mapActions({
       getCustomerCount: 'customer/count',
+      getRealtorCount: 'customer/realtorCount',
       totalCommissions: 'customer/totalCommissions',
       getProductCommissions: 'transactions/productCommissions',
     }),
