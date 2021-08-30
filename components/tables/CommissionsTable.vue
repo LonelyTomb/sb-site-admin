@@ -71,7 +71,7 @@
         <div class="text-center p-1 rounded-lg">
           {{
             data.item.customer
-              ? data.item.customer.firstname
+              ? data.item.customer.firstname // : data.item.wallet // ? data.item.wallet.name
               : 'COMPANY COMMISSION'
           }}
           {{ data.item.customer ? data.item.customer.lastname : '' }}
