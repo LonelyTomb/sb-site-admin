@@ -195,10 +195,12 @@ export default {
     },
   },
   async mounted() {
+    const loader = this.$loading.show()
     try {
       await this.getCustomerCount()
       await this.getProductCommissions()
       await this.getRealtorCount()
+      loader.hide()
     } catch (e) {
       this.$Toast.fire({ icon: 'error', title: this.$formatError(e) })
     }
