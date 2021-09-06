@@ -202,6 +202,7 @@ export default {
       await this.getRealtorCount()
       loader.hide()
     } catch (e) {
+      loader.hide()
       this.$Toast.fire({ icon: 'error', title: this.$formatError(e) })
     }
   },
