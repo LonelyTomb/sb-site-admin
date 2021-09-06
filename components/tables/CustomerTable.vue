@@ -24,11 +24,24 @@
           >
         </b-form>
       </b-col>
-      <b-col cols="12" lg="2">
-        <div class="d-flex">
+      <b-col cols="12" lg="4">
+        <div class="d-flex justify-content-end">
           <b-button
             squared
-            class="ml-auto export-button"
+            class="mr-4 export-button text-capitalize"
+            :to="{
+              name:
+                users === 'customers'
+                  ? 'admin-clients-upload'
+                  : `admin-${users}-upload`,
+            }"
+          >
+            Upload {{ users }}
+            <b-icon icon="chevron-right" class="ml-1" scale="0.75" />
+          </b-button>
+          <b-button
+            squared
+            class="export-button"
             @click.prevent="$emit('export', true)"
           >
             Export
@@ -123,6 +136,11 @@ export default {
     items: {
       type: Array,
       required: true,
+    },
+    users: {
+      required: false,
+      default: 'customers',
+      type: String,
     },
   },
   data() {
