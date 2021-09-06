@@ -4,7 +4,7 @@
       <div v-if="product" class="d-flex mb-3 mt-4 mt-lg-0">
         <img
           :src="require('@/assets/images/svg/back-arrow.svg')"
-          class="mr-3 back-arrow"
+          class="mr-3 back-arrow d-none"
           alt=""
           @click="$router.back()"
         />
