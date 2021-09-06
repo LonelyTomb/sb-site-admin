@@ -38,11 +38,14 @@
       <b-row>
         <customer-table
           v-if="realtors.rows"
+          users="realtors"
           class="w-100"
           :items="realtors.rows"
           :fields="fields"
+          :pagination="realtors.paging"
           @export="exportData"
           @search="searchData"
+          @goToPage="loadData"
         />
       </b-row>
     </b-container>
@@ -178,6 +181,24 @@ export default {
       } catch (e) {
         loader.hide()
         await this.$formatError(e)
+      }
+    },
+    async loadData(e) {
+      const loader = this.$loading.show()
+      try {
+        await this.getRealtors({ page: e })
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'smooth',
+        })
+        loader.hide()
+      } catch (e) {
+        loader.hide()
+        await this.$Toast.fire({
+          icon: 'error',
+          title: this.$formatError(e),
+        })
       }
     },
   },

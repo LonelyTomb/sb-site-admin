@@ -118,11 +118,20 @@
         </div>
       </template>
     </b-table>
+    <paginate
+      v-if="pagination.total"
+      :per-page="pagination.limit"
+      :total-rows="pagination.total"
+      @to="fetchData"
+    />
   </div>
 </template>
 
 <script>
 export default {
+  components: {
+    Paginate: () => import('@/components/Paginate'),
+  },
   props: {
     fields: {
       type: Array,
@@ -142,6 +151,11 @@ export default {
       default: 'customers',
       type: String,
     },
+    pagination: {
+      required: false,
+      type: Object,
+      default: () => ({}),
+    },
   },
   data() {
     return {
@@ -160,6 +174,9 @@ export default {
     },
   },
   methods: {
+    fetchData(e) {
+      this.$emit('goToPage', e)
+    },
     clearSearch() {
       this.search = ''
       this.$emit('search', '')
