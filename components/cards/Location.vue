@@ -12,7 +12,7 @@
       <b-col cols="12">
         <div class="d-flex flex-column justify-content-between h-100 p-4">
           <div class="property-info d-flex flex-column gap-2">
-            <div class="d-flex justify-content-between">
+            <div class="">
               <p class="property-name mb-0">{{ property.name }}</p>
               <b-badge pill variant="secondary" class="py-1">
                 {{ property.total_units - property.available_units }} Plot(s)
