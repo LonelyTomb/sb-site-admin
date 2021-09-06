@@ -32,5 +32,8 @@ const actions = {
     const response = await this.$axios.$get('/api/customer/count')
     commit(SET_COUNT, response.payload.count)
   },
+  async bulkUpload({ commit }, payload) {
+    return await this.$axios.$post('/api/customer/bulk-sign-up', payload)
+  },
 }
 export default actions

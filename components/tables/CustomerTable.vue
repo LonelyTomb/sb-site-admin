@@ -24,11 +24,24 @@
           >
         </b-form>
       </b-col>
-      <b-col cols="12" lg="2">
-        <div class="d-flex">
+      <b-col cols="12" lg="4">
+        <div class="d-flex justify-content-end">
           <b-button
             squared
-            class="ml-auto export-button"
+            class="mr-4 export-button text-capitalize"
+            :to="{
+              name:
+                users === 'customers'
+                  ? 'admin-clients-upload'
+                  : `admin-${users}-upload`,
+            }"
+          >
+            Upload {{ users }}
+            <b-icon icon="chevron-right" class="ml-1" scale="0.75" />
+          </b-button>
+          <b-button
+            squared
+            class="export-button"
             @click.prevent="$emit('export', true)"
           >
             Export
@@ -105,11 +118,20 @@
         </div>
       </template>
     </b-table>
+    <paginate
+      v-if="pagination.total"
+      :per-page="pagination.limit"
+      :total-rows="pagination.total"
+      @to="fetchData"
+    />
   </div>
 </template>
 
 <script>
 export default {
+  components: {
+    Paginate: () => import('@/components/Paginate'),
+  },
   props: {
     fields: {
       type: Array,
@@ -123,6 +145,16 @@ export default {
     items: {
       type: Array,
       required: true,
+    },
+    users: {
+      required: false,
+      default: 'customers',
+      type: String,
+    },
+    pagination: {
+      required: false,
+      type: Object,
+      default: () => ({}),
     },
   },
   data() {
@@ -142,6 +174,9 @@ export default {
     },
   },
   methods: {
+    fetchData(e) {
+      this.$emit('goToPage', e)
+    },
     clearSearch() {
       this.search = ''
       this.$emit('search', '')
