@@ -29,12 +29,7 @@
         md="6"
         class="mb-4"
       >
-        <nuxt-link
-          :to="{ name: item.route }"
-          class="text-decoration-none text-dark"
-        >
-          <stats-card :item="item" />
-        </nuxt-link>
+        <stats-card :item="item" />
       </b-col>
     </b-row>
     <b-row v-if="false" class="details-row">
@@ -56,8 +51,8 @@
             <p class="opacity-60 font-weight-bold">₦5,000,000</p>
           </div>
 
-          <div>
-            <a class="d-flex justify-content-between opacity-60" href="#"
+          <div class="opacity-60">
+            <a href="#"
               >View More
               <b-img src="~svg/arrow 1.svg" />
             </a>
@@ -133,6 +128,19 @@
         </div>
       </b-col>
     </b-row>
+    <b-row class="px-3">
+      <sales-table
+        v-if="subscriptions.rows"
+        class="w-100"
+        :items="subscriptions.rows"
+        :pagination="subscriptions.paging"
+        :fields="fields"
+        @export="exportData"
+        @search="searchData"
+        @goToPage="loadData"
+      >
+      </sales-table>
+    </b-row>
   </b-container>
 </template>
 
@@ -141,27 +149,63 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'AdminDashboard',
   components: {
-    StatsCard: () => import('@/components/cards/StatsCard'),
+    SalesTable: () => import('@/components/tables/SalesTable'),
+    StatsCard: () => import('@/components/cards/AltStatsCard'),
   },
   layout: 'admin',
   data() {
-    return {}
+    return {
+      fields: [
+        {
+          key: 'check',
+        },
+        {
+          key: 'client',
+          label: 'Client',
+        },
+        // {
+        //   key: 'referrer',
+        //   label: 'Referrer',
+        // },
+        {
+          key: 'sales',
+          label: 'Sales',
+        },
+        {
+          key: 'date',
+          label: 'Date',
+        },
+        {
+          key: 'total_amount',
+          label: 'Total Price',
+        },
+        {
+          key: 'amount_paid',
+          label: 'Amount Paid',
+        },
+        {
+          key: 'status',
+        },
+      ],
+    }
   },
   head() {
     return {
-      title: 'Sabreworks || Dashboard',
+      title: 'LandShares || Dashboard',
     }
   },
   computed: {
     ...mapGetters({
       customerCount: 'customer/count',
       realtorCount: 'realtor/count',
-      productCommissions: 'transactions/productCommissions',
+      subscriptions: 'product/subscriptions',
+      subscriptionsCount: 'product/subscriptionsCount',
+      productsSold: 'product/productsSold',
     }),
-    totalCommission() {
-      return this.productCommissions.length
-        ? this.productCommissions.reduce(
-            (acc, current) => acc + Number(current.total_commissions_paid),
+    totalProductsSold() {
+      return this.productsSold.length
+        ? this.productsSold.reduce(
+            (acc, current) => acc + Number(current.total_units_sold),
             0
           )
         : 0
@@ -170,21 +214,24 @@ export default {
       return [
         {
           title: 'Total Clients',
-          route: 'admin-clients',
-          numeric: this.customerCount,
+          numeric: `${this.customerCount || 0}`,
           percentage: 0,
           icon: require('@/assets/images/svg/Group 2.svg'),
         },
         {
           title: 'Total Realtors',
-          route: 'admin-realtors',
-          numeric: this.realtorCount,
+          numeric: `${this.realtorCount || 0}`,
           percentage: 0,
-          icon: require('@/assets/images/svg/Group 2.svg'),
+          icon: require('@/assets/images/svg/Group 2 (1).svg'),
+        },
+        {
+          title: 'Total Products Sold',
+          numeric: `${this.totalProductsSold}`,
+          percentage: 0,
+          icon: require('@/assets/images/svg/shop.svg'),
         },
         {
           title: 'Total Commissions',
-          route: 'admin-commissions',
           numeric: `N${this.$formatAsMoney(
             this.$fromKobo(this.totalCommission)
           )}`,
@@ -197,22 +244,76 @@ export default {
   async mounted() {
     const loader = this.$loading.show()
     try {
-      await this.getCustomerCount()
-      await this.getProductCommissions()
+      await this.getCustomerCount({ is_realtor: false })
       await this.getRealtorCount()
+      await this.getSubscriptions()
+      await this.getTransactions({ txtn_type: 'commission' })
+
       loader.hide()
     } catch (e) {
       loader.hide()
-      this.$Toast.fire({ icon: 'error', title: this.$formatError(e) })
+      await this.$Toast.fire({
+        icon: 'error',
+        title: this.$formatError(e),
+      })
     }
   },
   methods: {
     ...mapActions({
       getCustomerCount: 'customer/count',
       getRealtorCount: 'realtor/count',
-      totalCommissions: 'customer/totalCommissions',
-      getProductCommissions: 'transactions/productCommissions',
+      getSubscriptions: 'product/subscriptions',
+      getProductsSold: 'product/productsSold',
     }),
+    async loadData(e) {
+      const loader = this.$loading.show()
+      try {
+        await this.getSubscriptions({ page: e })
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'smooth',
+        })
+        loader.hide()
+      } catch (e) {
+        loader.hide()
+        await this.$Toast.fire({
+          icon: 'error',
+          title: this.$formatError(e),
+        })
+      }
+    },
+    saveAsCSV(filename, data) {
+      const hiddenElement = document.createElement('a')
+      hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(data)
+      hiddenElement.target = '_blank'
+      hiddenElement.download = `${filename}.csv`
+      hiddenElement.click()
+    },
+    async exportData() {
+      const loader = this.$loading.show()
+      try {
+        const res = await this.exportSubscriptions()
+        this.saveAsCSV('sales', res)
+        loader.hide()
+      } catch (e) {
+        loader.hide()
+        await this.$Toast.fire({
+          icon: 'error',
+          title: this.$formatError(e),
+        })
+      }
+    },
+    async searchData(val) {
+      const loader = this.$loading.show()
+      try {
+        await this.getSubscriptions({ search: val })
+        loader.hide()
+      } catch (e) {
+        loader.hide()
+        await this.$formatError(e)
+      }
+    },
   },
 }
 </script>
