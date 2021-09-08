@@ -93,7 +93,7 @@ export default {
   },
   head() {
     return {
-      title: 'Landshares || Commissions',
+      title: 'Sabreworks || Commissions',
     }
   },
   computed: {

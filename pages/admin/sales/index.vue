@@ -100,7 +100,7 @@ export default {
   },
   head() {
     return {
-      title: 'Landshares || Sales',
+      title: 'Sabreworks || Sales',
     }
   },
   computed: {

@@ -20,7 +20,7 @@ export default {
   },
   head() {
     return {
-      title: 'Landshares || Change Users',
+      title: 'Sabreworks || Change Users',
     }
   },
   computed: {},
