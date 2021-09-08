@@ -3,5 +3,7 @@ const state = () => ({
   products: {},
   subscription: {},
   subscriptions: {},
+  productsSold: [],
+  subscriptionsCount: {},
 })
 export default state
