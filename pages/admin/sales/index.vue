@@ -149,7 +149,7 @@ export default {
   async mounted() {
     const loader = this.$loading.show()
     try {
-      // await this.getProductsSold()
+      await this.getProductsSold()
       await this.getSubscriptions()
       this.onGoingCount = {
         ...(await this.getSubscriptionsCount({
