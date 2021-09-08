@@ -70,11 +70,11 @@ export default {
         {
           title: 'Finances',
           links: [
-            // {
-            //   title: 'Sales',
-            //   name: 'admin-sales',
-            //   image: require('@/assets/images/svg/sales-icon.svg'),
-            // },
+            {
+              title: 'Sales',
+              name: 'admin-sales',
+              image: require('@/assets/images/svg/sales-icon.svg'),
+            },
             // {
             //   title: 'Promotions',
             //   name: 'admin-promotions',
@@ -100,16 +100,16 @@ export default {
             //   name: 'admin-change_requests',
             //   image: require('@/assets/images/svg/changed-request-icon.svg'),
             // },
-            {
-              title: 'Settings',
-              name: 'admin-settings',
-              image: require('@/assets/images/svg/settings-icon.svg'),
-            },
             // {
-            //   title: 'Users',
-            //   name: 'admin-users',
-            //   image: require('@/assets/images/svg/users-icon.svg'),
+            //   title: 'Settings',
+            //   name: 'admin-settings',
+            //   image: require('@/assets/images/svg/settings-icon.svg'),
             // },
+            {
+              title: 'Users',
+              name: 'admin-users',
+              image: require('@/assets/images/svg/users-icon.svg'),
+            },
           ],
         },
       ],

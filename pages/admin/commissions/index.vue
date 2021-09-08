@@ -29,9 +29,11 @@
           v-if="commissions.rows"
           class="w-100"
           :items="commissions.rows"
+          :pagination="commissions.paging"
           :fields="fields"
           @export="exportData"
           @search="searchData"
+          @goToPage="loadData"
         >
         </commissions-table>
       </b-row>
@@ -60,8 +62,16 @@ export default {
           label: 'Fullname',
         },
         {
+          key: 'details',
+          label: 'Details',
+        },
+        {
+          key: 'value',
+          label: 'Value',
+        },
+        {
           key: 'total_amount',
-          label: 'Amount Paid',
+          label: 'Amount Payable',
         },
         {
           key: 'status',
@@ -83,13 +93,11 @@ export default {
   },
   head() {
     return {
-      title: 'Sabreworks || Commissions',
+      title: 'Landshares || Commissions',
     }
   },
   computed: {
     ...mapGetters({
-      customerCount: 'customer/count',
-      customers: 'customer/customers',
       commissions: 'transactions/all',
       productCommissions: 'transactions/productCommissions',
     }),
@@ -117,24 +125,41 @@ export default {
   async mounted() {
     const loader = this.$loading.show()
     try {
-      await this.getCustomerCount()
-      await this.getCustomers()
-      await this.getTransactions({ type: 'commission' })
-      await this.getProductCommissions()
+      await this.getTransactions({ txtn_type: 'commission' })
+      // await this.getProductCommissions()
       loader.hide()
     } catch (e) {
       loader.hide()
-      await this.$formatError(e)
+      await this.$Toast.fire({
+        icon: 'error',
+        title: this.$formatError(e),
+      })
     }
   },
   methods: {
     ...mapActions({
       getTransactions: 'transactions/all',
       getProductCommissions: 'transactions/productCommissions',
-      getCustomerCount: 'customer/count',
-      getCustomers: 'customer/customers',
-      exportCustomer: 'customer/export',
+      exportTransaction: 'transactions/export',
     }),
+    async loadData(e) {
+      const loader = this.$loading.show()
+      try {
+        await this.getTransactions({ page: e, type: 'commission' })
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'smooth',
+        })
+        loader.hide()
+      } catch (e) {
+        loader.hide()
+        await this.$Toast.fire({
+          icon: 'error',
+          title: this.$formatError(e),
+        })
+      }
+    },
     saveAsCSV(filename, data) {
       const hiddenElement = document.createElement('a')
       hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(data)
@@ -145,8 +170,8 @@ export default {
     async exportData() {
       const loader = this.$loading.show()
       try {
-        const res = await this.exportCustomer()
-        this.saveAsCSV('customers', res)
+        const res = await this.exportTransaction({ type: 'commission' })
+        this.saveAsCSV('commissions', res)
         loader.hide()
       } catch (e) {
         loader.hide()
@@ -159,7 +184,7 @@ export default {
     async searchData(val) {
       const loader = this.$loading.show()
       try {
-        await this.getCustomers({ search: val })
+        await this.getTransactions({ search: val, type: 'commission' })
         loader.hide()
       } catch (e) {
         loader.hide()
