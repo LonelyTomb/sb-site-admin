@@ -125,8 +125,8 @@ export default {
   async mounted() {
     const loader = this.$loading.show()
     try {
-      await this.getTransactions({ txtn_type: 'commission' })
-      // await this.getProductCommissions()
+      await this.getTransactions({ type: 'commission' })
+      await this.getProductCommissions()
       loader.hide()
     } catch (e) {
       loader.hide()

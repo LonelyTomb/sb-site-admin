@@ -200,8 +200,17 @@ export default {
       realtorCount: 'realtor/count',
       subscriptions: 'product/subscriptions',
       subscriptionsCount: 'product/subscriptionsCount',
+      productCommissions: 'transactions/productCommissions',
       productsSold: 'product/productsSold',
     }),
+    totalCommission() {
+      return this.productCommissions.length
+        ? this.productCommissions.reduce(
+            (acc, current) => acc + Number(current.total_commissions_paid),
+            0
+          )
+        : 0
+    },
     totalProductsSold() {
       return this.productsSold.length
         ? this.productsSold.reduce(
@@ -247,7 +256,8 @@ export default {
       await this.getCustomerCount({ is_realtor: false })
       await this.getRealtorCount()
       await this.getSubscriptions()
-      await this.getTransactions({ txtn_type: 'commission' })
+      await this.getTransactions({ type: 'commission' })
+      await this.getProductCommissions()
 
       loader.hide()
     } catch (e) {
@@ -264,6 +274,8 @@ export default {
       getRealtorCount: 'realtor/count',
       getSubscriptions: 'product/subscriptions',
       getProductsSold: 'product/productsSold',
+      getProductCommissions: 'transactions/productCommissions',
+      getTransactions: 'transactions/all',
     }),
     async loadData(e) {
       const loader = this.$loading.show()
