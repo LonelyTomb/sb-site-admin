@@ -83,12 +83,18 @@
         </div>
       </template>
       <template #cell(value)="data">
-        <div class="text-left p-1 rounded-lg">
+        <div
+          v-if="data.item.product_subscription"
+          class="text-left p-1 rounded-lg"
+        >
           N{{
             $formatAsMoney(
               $fromKobo(data.item.product_subscription.amount_paid)
             )
           }}
+        </div>
+        <div v-else class="text-left p-1 rounded-lg">
+          <p>N/A</p>
         </div>
       </template>
       <template #cell(total_amount)="data">
