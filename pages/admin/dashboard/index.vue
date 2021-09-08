@@ -191,7 +191,7 @@ export default {
   },
   head() {
     return {
-      title: 'LandShares || Dashboard',
+      title: 'Sabreworks || Dashboard',
     }
   },
   computed: {
