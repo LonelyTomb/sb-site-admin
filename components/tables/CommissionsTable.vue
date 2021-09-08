@@ -77,6 +77,20 @@
           {{ data.item.customer ? data.item.customer.lastname : '' }}
         </div>
       </template>
+      <template #cell(details)="data">
+        <div class="text-left p-1 rounded-lg">
+          {{ data.item.customer.email }}
+        </div>
+      </template>
+      <template #cell(value)="data">
+        <div class="text-left p-1 rounded-lg">
+          N{{
+            $formatAsMoney(
+              $fromKobo(data.item.product_subscription.amount_paid)
+            )
+          }}
+        </div>
+      </template>
       <template #cell(total_amount)="data">
         <div class="text-center p-1 rounded-lg">
           N{{ $formatAsMoney($fromKobo(data.item.total_amount)) }}
@@ -98,11 +112,20 @@
         </div>
       </template>
     </b-table>
+    <paginate
+      v-if="pagination.total"
+      :per-page="pagination.limit"
+      :total-rows="pagination.total"
+      @to="fetchData"
+    />
   </div>
 </template>
 
 <script>
 export default {
+  components: {
+    Paginate: () => import('@/components/Paginate'),
+  },
   props: {
     fields: {
       type: Array,
@@ -116,6 +139,11 @@ export default {
     items: {
       type: Array,
       required: true,
+    },
+    pagination: {
+      required: false,
+      type: Object,
+      default: () => ({}),
     },
   },
   data() {
@@ -135,6 +163,9 @@ export default {
     },
   },
   methods: {
+    fetchData(e) {
+      this.$emit('goToPage', e)
+    },
     clearSearch() {
       this.search = ''
       this.$emit('search', '')
