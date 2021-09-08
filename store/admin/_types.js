@@ -1,0 +1,3 @@
+const SET_ADMINS = 'SET_ADMINS'
+const SET_ADMIN = 'SET_ADMIN'
+export { SET_ADMINS, SET_ADMIN }
