@@ -218,6 +218,11 @@ export default {
   }
   thead {
     background: #e0e0e0;
+    tr {
+      th {
+        font-size: 0.8rem;
+      }
+    }
   }
   tr {
     td {
