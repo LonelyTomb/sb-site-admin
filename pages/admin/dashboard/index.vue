@@ -29,7 +29,12 @@
         md="6"
         class="mb-4"
       >
-        <stats-card :item="item" />
+        <nuxt-link
+          :to="{ name: item.link }"
+          class="text-decoration-none text-dark"
+        >
+          <stats-card :item="item" />
+        </nuxt-link>
       </b-col>
     </b-row>
     <b-row v-if="false" class="details-row">
@@ -226,18 +231,21 @@ export default {
           numeric: `${this.customerCount || 0}`,
           percentage: 0,
           icon: require('@/assets/images/svg/Group 2.svg'),
+          link: 'admin-clients',
         },
         {
           title: 'Total Realtors',
           numeric: `${this.realtorCount || 0}`,
           percentage: 0,
           icon: require('@/assets/images/svg/Group 2 (1).svg'),
+          link: 'admin-realtors',
         },
         {
           title: 'Total Products Sold',
           numeric: `${this.totalProductsSold}`,
           percentage: 0,
           icon: require('@/assets/images/svg/shop.svg'),
+          link: 'admin-sales',
         },
         {
           title: 'Total Commissions',
@@ -246,6 +254,7 @@ export default {
           )}`,
           percentage: 0,
           icon: require('@/assets/images/svg/percentage.svg'),
+          link: 'admin-commissions',
         },
       ]
     },
