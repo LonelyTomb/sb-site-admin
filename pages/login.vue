@@ -159,9 +159,6 @@ export default {
     width: 30%;
   }
 
-  .logo-brand img {
-    width: 70px;
-  }
   .auth-button {
     button {
       transition: all 2s ease-out;

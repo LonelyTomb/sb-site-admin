@@ -1,7 +1,7 @@
 <template>
   <div class="logo-brand mb-lg-5 mb-4 text-center">
     <b-img src="~png/logoicon-2.png" alt="" />
-    <h2>Sabreworks</h2>
+    <h1>Sabreworks</h1>
   </div>
 </template>
 
@@ -13,10 +13,10 @@ export default {
 
 <style>
 .logo-brand img {
-  width: 50px;
+  width: 15%;
 }
 
-.logo-brand h2 {
+.logo-brand h1 {
   display: inline;
   color: var(--primary);
 }
