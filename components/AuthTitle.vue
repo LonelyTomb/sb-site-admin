@@ -17,9 +17,9 @@ export default {
 
 <style lang="scss" scoped>
 h1 {
-  font-size: 30px;
+  font-size: 25px;
   font-family: $secondary-font;
-  color: var(--primary);
+  color: black;
 }
 @media screen and (max-width: 768px) {
   h1 {
