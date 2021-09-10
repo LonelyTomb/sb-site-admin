@@ -4,7 +4,7 @@
       v-model="text"
       :value="value"
       v-bind="$attrs"
-      :class="{ 'w-half': widthHalf, 'mb-3': !noSpacing }"
+      :class="{ 'w-half': widthHalf, 'mb-4': !noSpacing }"
       :required="required"
       @input="updateValue"
       v-on="$listeners"
@@ -68,8 +68,8 @@ export default {
 
 <style lang="scss" scoped>
 .form-control {
-  border: 2px solid var(--light) !important;
-  border-radius: 5px !important;
+  border: 1px solid var(--light) !important;
+  border-radius: 10px !important;
 }
 
 input {
