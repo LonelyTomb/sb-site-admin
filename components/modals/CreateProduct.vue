@@ -191,7 +191,7 @@ export default {
       },
       types: [
         { key: 'Land', value: 'land' },
-        { key: 'House', value: 'house' },
+        // { key: 'House', value: 'house' },
       ],
     }
   },
