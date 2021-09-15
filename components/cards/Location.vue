@@ -66,6 +66,7 @@ export default {
 .property-card {
   box-shadow: 0 0 30px #090d7c0d;
   //min-width: toRes(650);
+  border-radius: 10px !important;
 
   @media screen and (max-width: 992px) {
     min-width: toRem(300);

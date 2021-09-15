@@ -67,7 +67,7 @@ export default {
   background: {
     color: var(--dark);
   }
-  height: 100vh;
+  // height: 100vh;
   .logo {
     width: toRes(61);
   }

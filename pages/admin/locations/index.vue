@@ -5,7 +5,7 @@
         <div>
           <b-button
             v-b-modal.create-product
-            class="d-inline-flex gap-2 align-items-center"
+            class="d-inline-flex gap-2 align-items-center location-btn"
             variant="dark"
             ><b-img src="~svg/plus-circle 1.svg" />New Location</b-button
           >
@@ -92,4 +92,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.location-btn {
+  border-radius: 10px;
+}
+</style>

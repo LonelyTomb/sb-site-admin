@@ -88,7 +88,6 @@ export default {
   }
   .page-wrapper {
     height: 100vh;
-    margin-top: -25vh;
   }
   .form-wrapper {
     text-align: center;
