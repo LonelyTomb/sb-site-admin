@@ -30,6 +30,7 @@ export default {
 
 <style lang="scss">
 .users-card {
+  border-radius: 10px;
   .tabs {
     .nav.nav-tabs {
       border-bottom: none;

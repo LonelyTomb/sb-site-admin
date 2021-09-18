@@ -35,7 +35,7 @@
           </div>
         </b-col>
       </b-row>
-      <b-row>
+      <b-row class="px-3">
         <customer-table
           v-if="realtors.rows"
           users="realtors"

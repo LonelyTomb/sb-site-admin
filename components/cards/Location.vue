@@ -12,8 +12,8 @@
       <b-col cols="12">
         <div class="d-flex flex-column justify-content-between h-100 p-4">
           <div class="property-info d-flex flex-column gap-2">
-            <div class="">
-              <p class="property-name mb-0">{{ property.name }}</p>
+            <div class="property-name mb-3">
+              <p class="mb-0">{{ property.name }}</p>
               <b-badge pill variant="secondary" class="py-1">
                 {{ property.total_units - property.available_units }} Plot(s)
                 Sold</b-badge
@@ -90,15 +90,19 @@ export default {
     }
   }
   .property-name {
-    color: var(--dark);
-    font: {
-      size: toRes(20);
-      weight: 500;
-    }
-    line-height: toRes(29);
-    @media screen and (max-width: 992px) {
+    display: flex;
+    justify-content: space-between;
+    p {
+      color: var(--dark);
       font: {
-        size: toRem(11);
+        size: toRes(20);
+        weight: 500;
+      }
+      line-height: toRes(29);
+      @media screen and (max-width: 992px) {
+        font: {
+          size: toRem(11);
+        }
       }
     }
   }

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white overflow-auto p-4 customer-table">
+  <div class="bg-white overflow-auto p-4 mb-4 customer-table">
     <b-row no-gutters align-h="between" class="mb-3">
       <b-col cols="12" lg="6" class="d-flex">
         <b-form inline @submit.prevent="$emit('search', search)">
@@ -208,6 +208,7 @@ export default {
 </script>
 <style lang="scss">
 .customer-table {
+  border-radius: 10px;
   input[type='search'] {
     border-radius: 0;
   }
