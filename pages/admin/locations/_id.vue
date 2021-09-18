@@ -233,8 +233,23 @@
               :images="form.images"
               @completed="updateImages"
             />
-            <div class="d-flex justify-content-end gap-3 pt-3">
+
+            <div v-if="product" class="d-flex justify-content-end gap-3 pt-3">
               <b-button type="submit" variant="dark">Update</b-button>
+              <b-button
+                v-if="!product.is_active"
+                size="sm"
+                variant="success"
+                @click.prevent="toggleStatus(product.id, 'activate')"
+                >Activate</b-button
+              >
+              <b-button
+                v-if="product.is_active"
+                size="sm"
+                variant="danger"
+                @click.prevent="toggleStatus(product.id, 'deactivate')"
+                >Deactivate</b-button
+              >
             </div>
           </b-form>
         </b-card>
@@ -307,6 +322,8 @@ export default {
       updateProduct: 'product/update',
       activatePlan: 'product/plans/activate',
       deActivatePlan: 'product/plans/deactivate',
+      activateProduct: 'product/activate',
+      deActivateProduct: 'product/deactivate',
       fetchPlan: 'product/plans/single',
     }),
     async refreshData() {
@@ -365,6 +382,22 @@ export default {
         await this.refreshData()
         loader.hide()
         await this.$Toast.fire({ icon: 'success', title: `Plan ${type}d` })
+      } catch (e) {
+        loader.hide()
+        await this.$Toast.fire({ icon: 'error', title: this.$formatError(e) })
+      }
+    },
+    async toggleStatus(id, type) {
+      const loader = this.$loading.show()
+      try {
+        if (type === 'activate') {
+          await this.activateProduct({ id })
+        } else {
+          await this.deActivateProduct({ id })
+        }
+        await this.refreshData()
+        loader.hide()
+        await this.$Toast.fire({ icon: 'success', title: `Product ${type}d` })
       } catch (e) {
         loader.hide()
         await this.$Toast.fire({ icon: 'error', title: this.$formatError(e) })
