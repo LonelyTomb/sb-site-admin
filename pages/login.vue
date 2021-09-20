@@ -120,11 +120,23 @@ export default {
       const loader = this.$loading.show()
       try {
         const payload = { ...this.form }
-        await this.$auth.loginWith('admin', {
+        const response = await this.$auth.loginWith('admin', {
           data: payload,
         })
         loader.hide()
-        await this.$router.push({ name: 'admin' })
+        if (
+          response.data.payload.auth.role_name === 'customer' ||
+          response.data.payload.auth.role_name === 'realtor'
+        ) {
+          this.$auth.logout()
+
+          await this.$Toast.fire({
+            icon: 'error',
+            title: 'You do not have access rights',
+          })
+        } else {
+          await this.$router.push({ name: 'admin' })
+        }
       } catch (e) {
         const msg = this.$formatError(e)
         loader.hide()
