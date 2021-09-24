@@ -60,11 +60,11 @@ export default {
               name: 'admin-investments',
               image: require('@/assets/images/svg/realtor-icon.svg'),
             },
-            {
-              title: 'Pending Allocation',
-              name: 'admin-pending_allocation',
-              image: require('@/assets/images/svg/pending-allocation-icon.svg'),
-            },
+            // {
+            //   title: 'Pending Allocation',
+            //   name: 'admin-pending_allocation',
+            //   image: require('@/assets/images/svg/pending-allocation-icon.svg'),
+            // },
           ],
         },
         {
