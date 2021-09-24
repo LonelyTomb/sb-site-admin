@@ -27,6 +27,8 @@ export default {
     APP_AWS_ID: process.env.APP_AWS_ID,
     APP_AWS_SECRET_ACCESS_KEY: process.env.APP_AWS_SECRET_ACCESS_KEY,
     APP_AWS_BUCKET: process.env.APP_AWS_BUCKET,
+    CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
+    CLOUDINARY_UPLOAD_PRESET: process.env.CLOUDINARY_UPLOAD_PRESET,
     NUXT_MODE: process.env.NUXT_MODE,
   },
   loading: '~/components/LoadingOverlay.vue',

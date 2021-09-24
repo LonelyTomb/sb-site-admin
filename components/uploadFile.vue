@@ -12,7 +12,7 @@
           name="image"
           accept="image/*"
           placeholder="Choose a file or drop it here..."
-          @change="uploadFile($event.target.files[0], 'sabreworks')"
+          @change="cloudinaryUpload($event.target.files[0], 'sabreworks')"
         />
         <p v-if="uploading">Uploading: {{ value }}</p>
       </b-form-group>
@@ -75,6 +75,30 @@ export default {
   methods: {
     removeFromUrl(item) {
       this.urls = this.urls.filter((img) => img !== item)
+    },
+    async cloudinaryUpload(file, FOLDER) {
+      const CLOUDINARY_URL = `https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_CLOUD_NAME}/upload`
+      const CLOUDINARY_UPLOAD_PRESET =
+        process.env.CLOUDINARY_UPLOAD_PRESET || ''
+      const loader = this.$loading.show()
+
+      try {
+        const formData = new FormData()
+        formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+        formData.append('folder', FOLDER)
+        formData.append('file', file)
+        await fetch(CLOUDINARY_URL, { method: 'POST', body: formData })
+          .then((res) => res.json())
+          .then((data) => {
+            loader.hide()
+            this.uploadUrl = data.secure_url
+            this.urls.push(data.secure_url)
+            this.$emit('completed', this.urls)
+          })
+      } catch (e) {
+        loader.hide()
+        await this.$Toast.fire({ icon: 'error', title: this.$formatError(e) })
+      }
     },
     async uploadFile(file, FOLDER) {
       await new Promise((resolve, reject) => {
