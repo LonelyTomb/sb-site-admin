@@ -1,17 +1,23 @@
 <template>
   <div class="profile">
-    <b-countainer fluid="xxxl">
+    <b-container fluid="xxxl">
       <b-row>
-        <b-col cols="12" lg="9" class="mt-4"> <div></div> </b-col>
-        <b-col cols="12" lg="3" class="mt-4">
-          <div class="info">
+        <b-col cols="12" lg="9" class="mb-5 pb-5">
+          <h3>{{ realtor.firstname }} {{ realtor.lastname }}</h3>
+          <realtor :user="realtor" />
+        </b-col>
+        <b-col cols="12" lg="3" class="mt-4 mb-5 mb-lg-0">
+          <div v-if="realtor.id" class="info">
             <div class="text-center pt-5">
               <b-avatar
-                src="https://placekitten.com/300/300"
+                :src="
+                  realtor.profile_pic ||
+                  require('@/assets/images/png/1620655858850.png')
+                "
                 size="8rem"
               ></b-avatar>
               <br />
-              <b-button class="border border-white b-btn mt-2"
+              <b-button v-if="false" class="border border-white b-btn mt-2"
                 ><img
                   src="@/assets/images/svg/edit-icon.svg"
                   class="mr-2"
@@ -28,32 +34,26 @@
                     src="@/assets/images/svg/edit-icon.svg"
                     class="mr-2"
                     alt=""
-                  />Micheal Hollah
+                  />
+                  {{ realtor.firstname }} {{ realtor.lastname }}
                 </p>
                 <p>
                   <img
                     src="@/assets/images/svg/mail-icon.svg"
                     class="mr-2"
                     alt=""
-                  />micheahollah@gmail.com
+                  />{{ realtor.email }}
                 </p>
                 <p>
                   <img
                     src="@/assets/images/svg/phone-icon.svg"
                     class="mr-2"
                     alt=""
-                  />09046585049
-                </p>
-                <p>
-                  <img
-                    src="@/assets/images/svg/phone-icon.svg"
-                    class="mr-2"
-                    alt=""
-                  />08164748843
+                  />{{ realtor.phone }}
                 </p>
               </div>
             </div>
-            <div class="bio px-4 pb-4">
+            <div v-if="realtor.next_of_kin_full_name" class="bio px-4 pb-4">
               <h4 class="mb-3">Next of Kins Data</h4>
               <div class="data">
                 <p>
@@ -61,32 +61,32 @@
                     src="@/assets/images/svg/edit-icon.svg"
                     class="mr-2"
                     alt=""
-                  />Micheal Hollah
+                  />{{ realtor.next_of_kin_full_name }}
                 </p>
                 <p>
                   <img
                     src="@/assets/images/svg/mail-icon.svg"
                     class="mr-2"
                     alt=""
-                  />micheahollah@gmail.com
+                  />{{ realtor.next_of_kin_address }}
                 </p>
                 <p>
                   <img
                     src="@/assets/images/svg/phone-icon.svg"
                     class="mr-2"
                     alt=""
-                  />09046585049
+                  />{{ realtor.next_of_kin_phone }}
                 </p>
                 <p>
                   <img
-                    src="@/assets/images/svg/phone-icon.svg"
+                    src="@/assets/images/svg/d-user.svg"
                     class="mr-2"
                     alt=""
-                  />08164748843
+                  />{{ realtor.next_of_relationship }}
                 </p>
               </div>
             </div>
-            <div class="text-center pb-4">
+            <div v-if="false" class="text-center pb-4">
               <b-button
                 class="border border-white bg-dark text-light mt-2 mr-2"
               >
@@ -99,12 +99,53 @@
           </div>
         </b-col>
       </b-row>
-    </b-countainer>
+    </b-container>
   </div>
 </template>
 <script>
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
+  components: {
+    Realtor: () => import('@/components/Realtor'),
+  },
   layout: 'admin',
+  computed: {
+    ...mapGetters({
+      realtor: 'realtor/realtor',
+    }),
+  },
+  async mounted() {
+    const loader = this.$loading.show()
+    try {
+      await this.getRealtor(this.$route.params.id)
+      loader.hide()
+    } catch (e) {
+      loader.hide()
+      await this.$Toast.fire({
+        icon: 'error',
+        title: this.$formatError(e),
+      })
+    }
+  },
+  methods: {
+    ...mapActions({
+      getRealtor: 'realtor/realtor',
+    }),
+    async loadData() {
+      const loader = this.$loading.show()
+      try {
+        await this.getRealtor(this.$route.params.id)
+        loader.hide()
+      } catch (e) {
+        loader.hide()
+        await this.$Toast.fire({
+          icon: 'error',
+          title: this.$formatError(e),
+        })
+      }
+    },
+  },
 }
 </script>
 
