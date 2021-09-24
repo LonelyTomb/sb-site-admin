@@ -141,8 +141,8 @@ export default {
   async mounted() {
     const loader = this.$loading.show()
     try {
-      await this.getCustomerCount()
-      await this.getCustomers()
+      await this.getCustomerCount({ is_realtor: false })
+      await this.getCustomers({ is_realtor: false })
       loader.hide()
     } catch (e) {
       loader.hide()

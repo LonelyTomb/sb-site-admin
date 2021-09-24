@@ -82,7 +82,17 @@
       </template>
       <template #cell(fullname)="data">
         <div class="text-center p-1 rounded-lg">
-          {{ data.item.firstname }} {{ data.item.lastname }}
+          <nuxt-link
+            :to="{
+              name:
+                users === 'customers'
+                  ? 'admin-clients-id'
+                  : `admin-${users}-id`,
+              params: { id: data.item.id },
+            }"
+          >
+            {{ data.item.firstname }} {{ data.item.lastname }}
+          </nuxt-link>
         </div>
       </template>
       <template #cell(gender)="data">

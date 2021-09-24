@@ -28,8 +28,8 @@ const actions = {
   async export({ commit }) {
     return await this.$axios.$get(`/api/customer/csv`)
   },
-  async count({ commit }) {
-    const response = await this.$axios.$get('/api/customer/count')
+  async count({ commit }, params = {}) {
+    const response = await this.$axios.$get('/api/customer/count', { params })
     commit(SET_COUNT, response.payload.count)
   },
   async bulkUpload({ commit }, payload) {
