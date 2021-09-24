@@ -84,6 +84,12 @@ const actions = {
     )
     commit(SET_SUBSCRIPTION, response.payload)
   },
+
+  async allocate({ commit }, { id, allocations }) {
+    return await this.$axios.patch(`/api/product-subscription/allocate/${id}`, {
+      allocations,
+    })
+  },
 }
 
 export default actions
