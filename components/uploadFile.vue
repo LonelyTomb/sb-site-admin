@@ -91,6 +91,9 @@ export default {
           .then((res) => res.json())
           .then((data) => {
             loader.hide()
+            this.uploading = false
+            this.exist = true
+            this.uploadColor = 'success'
             this.uploadUrl = data.secure_url
             this.urls.push(data.secure_url)
             this.$emit('completed', this.urls)
