@@ -79,22 +79,17 @@
       </template>
       <template #cell(details)="data">
         <div class="text-left p-1 rounded-lg">
-          {{ (data.item.customer && data.item.customer.email) || 'N/A' }}
+          {{ (data.item.customer && data.item.customer.email) || 'Sabreworks' }}
         </div>
       </template>
       <template #cell(value)="data">
-        <div
-          v-if="data.item.product_subscription"
-          class="text-left p-1 rounded-lg"
-        >
-          N{{
+        <div class="text-left p-1 rounded-lg">
+          {{
+            data.item.product_subscription &&
             $formatAsMoney(
               $fromKobo(data.item.product_subscription.amount_paid)
             )
           }}
-        </div>
-        <div v-else class="text-left p-1 rounded-lg">
-          <p>N/A</p>
         </div>
       </template>
       <template #cell(total_amount)="data">
