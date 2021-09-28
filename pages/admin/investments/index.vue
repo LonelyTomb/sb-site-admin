@@ -13,11 +13,12 @@
         </div>
       </b-col>
     </b-row>
-    <b-row>
+    <b-row class="justify-content-center justify-content-lg-start">
       <b-col
         v-for="investment in products.rows"
         :key="investment.id"
         cols="auto"
+        class="mb-3"
       >
         <nuxt-link
           :to="`/admin/investments/${investment.id}`"
