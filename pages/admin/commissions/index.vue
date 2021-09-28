@@ -55,9 +55,6 @@ export default {
     return {
       fields: [
         {
-          key: 'check',
-        },
-        {
           key: 'fullname',
           label: 'Fullname',
         },

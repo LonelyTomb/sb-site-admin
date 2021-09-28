@@ -267,6 +267,7 @@ export default {
       await this.getSubscriptions()
       await this.getTransactions({ type: 'commission' })
       await this.getProductCommissions()
+      await this.getProductsSold()
 
       loader.hide()
     } catch (e) {
