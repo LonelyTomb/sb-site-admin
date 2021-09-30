@@ -1,23 +1,25 @@
 <template>
   <div
-    class="
-      investment-card
-      d-flex
-      align-content-between
-      pl-4
-      pr-5
-      py-4
-      flex-column
-    "
+    class="investment-card d-flex justify-content-between px-4 py-4 flex-column"
     :class="{
       matured: investment.isMatured,
     }"
   >
-    <p class="mb-5 pb-4 text">
-      NGN {{ $formatAsMoney($fromKobo(investment.unit_price)) }} for
-      {{ investment.duration }} months @{{ investment.interest_percentage }}%
-      ROI
-    </p>
+    <div>
+      <p class="text">{{ investment.name ? investment.name : '' }}</p>
+      <p class="mb-3 pb-4 text">
+        {{
+          `${
+            price
+              ? `NGN ${$formatAsMoney($fromKobo(price))}`
+              : 'Price not available'
+          } for
+      ${investment.duration} months @ ${investment.interest_percentage}%
+      ROI`
+        }}
+      </p>
+    </div>
+
     <div class="maturity">
       <small>Maturity Period</small>
       <p>{{ investment.duration }} Months</p>
@@ -34,6 +36,14 @@ export default {
       required: true,
     },
   },
+  computed: {
+    price() {
+      return this.investment.payment_plans &&
+        this.investment.payment_plans.length
+        ? this.investment.payment_plans[0].amount_per_unit
+        : null
+    },
+  },
 }
 </script>
 
@@ -43,6 +53,8 @@ export default {
   background: var(--primary);
   max-width: toRes(315);
   color: var(--white);
+  flex: 1;
+  height: 100%;
   &.matured {
     background: var(--secondary);
   }

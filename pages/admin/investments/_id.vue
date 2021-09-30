@@ -23,6 +23,7 @@
             <h2>Payment Plans</h2>
 
             <b-button
+              v-if="product.payment_plans && product.payment_plans.length === 0"
               class="d-inline-flex gap-2 align-items-center"
               variant="dark"
               size="sm"
@@ -47,9 +48,9 @@
               <b-list-group-item
                 >Minimum Units: {{ plan.minimun_no_units }}</b-list-group-item
               >
-              <b-list-group-item
+              <!-- <b-list-group-item
                 >Duration: {{ plan.duration }} month(s)</b-list-group-item
-              >
+              > -->
               <b-list-group-item class="text-capitalize">
                 Type: {{ plan.type.replace('_', ' ') }}
               </b-list-group-item>
@@ -172,6 +173,22 @@
             </b-form-group>
             <div class="d-flex justify-content-end gap-3 pt-3">
               <b-button type="submit" variant="dark">Update</b-button>
+              <div v-if="product" class="d-flex gap-3">
+                <b-button
+                  v-if="!product.is_active"
+                  size="sm"
+                  variant="success"
+                  @click.prevent="toggleStatus(product.id, 'activate')"
+                  >Activate</b-button
+                >
+                <b-button
+                  v-if="product.is_active"
+                  size="sm"
+                  variant="danger"
+                  @click.prevent="toggleStatus(product.id, 'deactivate')"
+                  >Deactivate</b-button
+                >
+              </div>
             </div>
           </b-form>
         </b-card>
@@ -228,6 +245,8 @@ export default {
     ...mapActions({
       fetchProduct: 'product/single',
       updateProduct: 'product/update',
+      activateProduct: 'product/activate',
+      deActivateProduct: 'product/deactivate',
       activatePlan: 'product/plans/activate',
       deActivatePlan: 'product/plans/deactivate',
       fetchPlan: 'product/plans/single',
@@ -278,6 +297,25 @@ export default {
         await this.refreshData()
         loader.hide()
         await this.$Toast.fire({ icon: 'success', title: `Plan ${type}d` })
+      } catch (e) {
+        loader.hide()
+        await this.$Toast.fire({ icon: 'error', title: this.$formatError(e) })
+      }
+    },
+    async toggleStatus(id, type) {
+      const loader = this.$loading.show()
+      try {
+        if (type === 'activate') {
+          await this.activateProduct({ id })
+        } else {
+          await this.deActivateProduct({ id })
+        }
+        await this.refreshData()
+        loader.hide()
+        await this.$Toast.fire({
+          icon: 'success',
+          title: `Investment ${type}d`,
+        })
       } catch (e) {
         loader.hide()
         await this.$Toast.fire({ icon: 'error', title: this.$formatError(e) })
