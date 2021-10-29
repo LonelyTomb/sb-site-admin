@@ -12,7 +12,7 @@ export default {
   },
   head() {
     return {
-      title: 'Sabreworks || Change Requests',
+      title: 'Demo Company || Change Requests',
     }
   },
   computed: {},

@@ -24,7 +24,7 @@
       </b-form-group>
       <section class="bank-details c-rounded border-danger border p-4 my-3">
         <p class="text-danger">Account Number: 0033347558</p>
-        <p class="text-danger">Account Name: Sabreworks</p>
+        <p class="text-danger">Account Name: Demo Company</p>
         <p class="text-danger mb-0">Bank Name: United Bank for Africa (UBA)</p>
       </section>
       <upload-file

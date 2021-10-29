@@ -42,7 +42,7 @@
 
         <div v-else class="form-wrapper px-4">
           <div class="logo-brand mb-5">
-            <b-img src="~svg/logo.svg" alt="" rounded="circle" />
+            <b-img src="~png/logo.png" alt="" rounded="circle" />
           </div>
           <AuthTitle title="Forgot Password" />
           <h5 class="mb-5">

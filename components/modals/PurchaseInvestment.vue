@@ -22,7 +22,7 @@
         >
           <b-icon icon="chevron-left" />
         </b-button>
-        <h4 class="mb-0">Sabreworks’ Investment</h4>
+        <h4 class="mb-0">Demo Company’ Investment</h4>
       </section>
       <section>
         <b-form class="investment-form">

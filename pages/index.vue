@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div>
-      <h1 class="title">Sabreworks</h1>
+      <h1 class="title">Demo Company</h1>
       <div class="links">
         <a
           href="https://nuxtjs.org/"

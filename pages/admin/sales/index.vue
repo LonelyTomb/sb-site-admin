@@ -100,7 +100,7 @@ export default {
   },
   head() {
     return {
-      title: 'Sabreworks || Sales',
+      title: 'Demo Company || Sales',
     }
   },
   computed: {

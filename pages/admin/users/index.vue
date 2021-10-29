@@ -20,7 +20,7 @@ export default {
   },
   head() {
     return {
-      title: 'Sabreworks || Change Users',
+      title: 'Demo Company || Change Users',
     }
   },
   computed: {},

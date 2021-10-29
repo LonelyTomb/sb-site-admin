@@ -79,7 +79,7 @@
       </template>
       <template #cell(details)="data">
         <div class="text-left p-1 rounded-lg">
-          {{ (data.item.customer && data.item.customer.email) || 'Sabreworks' }}
+          {{ (data.item.customer && data.item.customer.email) || 'Demo Company' }}
         </div>
       </template>
       <template #cell(value)="data">

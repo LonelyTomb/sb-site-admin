@@ -1,7 +1,7 @@
 <template>
   <div class="logo-brand mb-lg-5 mb-4 text-center">
     <b-img src="~png/logoicon-2.png" alt="" />
-    <h1>Sabreworks</h1>
+    <h1>Demo Company</h1>
   </div>
 </template>
 

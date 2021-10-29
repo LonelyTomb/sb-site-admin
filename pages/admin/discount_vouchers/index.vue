@@ -12,7 +12,7 @@ export default {
   },
   head() {
     return {
-      title: 'Sabreworks || Discount Vouchers',
+      title: 'Demo Company || Discount Vouchers',
     }
   },
   computed: {},

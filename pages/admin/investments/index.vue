@@ -47,7 +47,7 @@ export default {
   },
   head() {
     return {
-      title: 'Sabreworks || Investment',
+      title: 'Demo Company || Investment',
     }
   },
   computed: {

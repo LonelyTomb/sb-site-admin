@@ -89,7 +89,7 @@ export default {
   },
   head() {
     return {
-      title: 'Sabreworks || Payments',
+      title: 'Demo Company || Payments',
     }
   },
   computed: {

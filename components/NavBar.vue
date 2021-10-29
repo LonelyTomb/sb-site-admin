@@ -1,7 +1,7 @@
 <template>
   <div class="the-hills-nav">
     <nav class="navbar">
-      <b-img src="@/assets/images/svg/logo.svg" class="nav-logo" />
+      <b-img src="@/assets/images/png/logo.png" class="nav-logo" />
       <div class="nav-links justify-content-between">
         <NuxtLink to="#about">About us</NuxtLink>
         <NuxtLink to="#faq">How It works</NuxtLink>

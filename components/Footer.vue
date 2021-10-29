@@ -1,7 +1,7 @@
 <template>
   <footer class="the-hills-footer">
     <div class="footer-logo-container">
-      <b-img src="@/assets/images/svg/logo-white.svg" class="footer-logo" />
+      <b-img src="@/assets/images/png/logo.png" class="footer-logo" />
     </div>
     <div class="quicklinks">
       <p class="footer-title">quick links</p>

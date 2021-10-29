@@ -73,7 +73,7 @@ export default {
   },
   head() {
     return {
-      title: 'Sabreworks || Pending Allocation',
+      title: 'Demo Company || Pending Allocation',
     }
   },
   computed: {

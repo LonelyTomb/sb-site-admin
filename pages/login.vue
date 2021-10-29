@@ -12,7 +12,7 @@
 
           <BaseInout
             v-model="form.username"
-            :icon="require('@/assets/images/svg/logo.svg')"
+            :icon="require('@/assets/images/png/logo.png')"
             placeholder="Enter email address"
             type="text"
             :value="form.username"
@@ -32,7 +32,7 @@
 
           <BaseInout
             v-model="form.password"
-            :icon="require('@/assets/images/svg/logo.svg')"
+            :icon="require('@/assets/images/png/logo.png')"
             placeholder="Enter password"
             type="password"
             :value="form.password"
